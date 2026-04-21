@@ -1,89 +1,46 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+# 📊 Smartphone Usage EDA
 
-# Load dataset
-file_path = "/content/Smartphone_Usage_And_Addiction_Analysis_7500_Rows (1).csv"
-df = pd.read_csv(file_path)
+## 📌 Project Description
 
-# -------------------------------
-# 1. Basic Info
-# -------------------------------
-print("Shape of dataset:", df.shape)
-print("\nColumn names:\n", df.columns)
-print("\nData types:\n", df.dtypes)
+This project performs Exploratory Data Analysis (EDA) on smartphone usage and addiction data.
 
-# -------------------------------
-# 2. Summary Statistics
-# -------------------------------
-print("\nSummary statistics:\n", df.describe())
+## 📂 Dataset
 
-# -------------------------------
-# 3. Missing Values
-# -------------------------------
-print("\nMissing values:\n", df.isnull().sum())
+* 7500 rows
+* Contains user behavior and usage patterns
 
-# -------------------------------
-# 4. Duplicate Rows
-# -------------------------------
-print("\nDuplicate rows:", df.duplicated().sum())
+## 🛠️ Tools Used
 
-# -------------------------------
-# 5. Unique Values
-# -------------------------------
-for col in df.columns:
-    print(f"\nUnique values in {col}: {df[col].nunique()}")
+* Python
+* pandas
+* numpy
+* matplotlib
 
-# -------------------------------
-# 6. Value Counts (Categorical)
-# -------------------------------
-categorical_cols = df.select_dtypes(include=['object']).columns
+## 🔍 Analysis Performed
 
-for col in categorical_cols:
-    print(f"\nValue counts for {col}:\n")
-    print(df[col].value_counts())
+* Data cleaning
+* Missing value check
+* Statistical summary
+* Data visualization
+* Correlation analysis
 
-# -------------------------------
-# 7. Correlation Matrix
-# -------------------------------
-numeric_df = df.select_dtypes(include=[np.number])
-correlation = numeric_df.corr()
+## 📈 Key Insights
 
-print("\nCorrelation Matrix:\n", correlation)
+* High screen time is linked with addiction
+* Usage patterns vary across users
 
-# Plot correlation heatmap
-plt.figure(figsize=(10, 6))
-plt.imshow(correlation)
-plt.colorbar()
-plt.xticks(range(len(correlation.columns)), correlation.columns, rotation=90)
-plt.yticks(range(len(correlation.columns)), correlation.columns)
-plt.title("Correlation Heatmap")
-plt.show()
+## ▶️ How to Run
 
-# -------------------------------
-# 8. Distribution Plots
-# -------------------------------
-numeric_cols = numeric_df.columns
+```bash
+pip install pandas numpy matplotlib
+python eda.py
+```
 
-for col in numeric_cols:
-    plt.figure()
-    plt.hist(df[col].dropna(), bins=30)
-    plt.title(f"Distribution of {col}")
-    plt.xlabel(col)
-    plt.ylabel("Frequency")
-    plt.show()
+## 📁 Files
 
-# -------------------------------
-# 9. Boxplots (Outliers)
-# -------------------------------
-for col in numeric_cols:
-    plt.figure()
-    plt.boxplot(df[col].dropna())
-    plt.title(f"Boxplot of {col}")
-    plt.show()
+* eda.py
+* dataset.csv
 
-# -------------------------------
-# 10. Pairwise Relationships
-# -------------------------------
-pd.plotting.scatter_matrix(numeric_df, figsize=(12, 10))
-plt.show()
+## 🙌 Conclusion
+
+This analysis helps understand smartphone addiction patterns.
